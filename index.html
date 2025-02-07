@@ -8,29 +8,37 @@
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
         
+        <!-- Cursor para detectar clics -->
+        <a-entity cursor="rayOrigin: mouse"></a-entity>
+
         <!-- Marcador de imagen -->
         <a-marker type="pattern" url="assets/pattern-marker.patt">
             <a-entity geometry="primitive: sphere" material="color: blue"></a-entity>
-            <a-text value="¡Hola Mundo!" position="0 0 0" scale="2 2 2" color="red" rotation="-90 0 0"></a-text>
-            
-<!-- Botón 1 -->
-        <a-plane position="-0.3 0 0" width="0.2" height="0.1" material="color: red" 
-                 onclick="alert('Botón 1 presionado')">
-            <a-text value="Botón 1" align="center" position="0 0 0.01" color="white"></a-text>
-        </a-plane>
 
-        <!-- Botón 2 -->
-        <a-plane position="0 0 0" width="0.2" height="0.1" material="color: green" 
-                 onclick="alert('Botón 2 presionado')">
-            <a-text value="Botón 2" align="center" position="0 0 0.01" color="white"></a-text>
-        </a-plane>
+            <!-- Texto visible correctamente -->
+            <a-text value="¡Hola Mundo!" position="0 0.5 0" scale="2 2 2" color="red"></a-text>
 
-        <!-- Botón 3 -->
-        <a-plane position="0.3 0 0" width="0.2" height="0.1" material="color: blue" 
-                 onclick="alert('Botón 3 presionado')">
-            <a-text value="Botón 3" align="center" position="0 0 0.01" color="white"></a-text>
-        </a-plane>
-            
+            <!-- Botón 1 -->
+            <a-plane position="-0.3 0.2 0" width="0.2" height="0.1" material="color: red" class="boton"
+                     event-set__click="_event: click; _target: #msg; value: 'Botón 1 presionado'; color: red;">
+                <a-text value="Botón 1" align="center" position="0 0 0.01" color="white"></a-text>
+            </a-plane>
+
+            <!-- Botón 2 -->
+            <a-plane position="0 0.2 0" width="0.2" height="0.1" material="color: green" class="boton"
+                     event-set__click="_event: click; _target: #msg; value: 'Botón 2 presionado'; color: green;">
+                <a-text value="Botón 2" align="center" position="0 0 0.01" color="white"></a-text>
+            </a-plane>
+
+            <!-- Botón 3 -->
+            <a-plane position="0.3 0.2 0" width="0.2" height="0.1" material="color: blue" class="boton"
+                     event-set__click="_event: click; _target: #msg; value: 'Botón 3 presionado'; color: blue;">
+                <a-text value="Botón 3" align="center" position="0 0 0.01" color="white"></a-text>
+            </a-plane>
+
+            <!-- Mensaje de interacción -->
+            <a-text id="msg" value="Presiona un botón" position="0 -0.5 0" scale="1 1 1" color="yellow"></a-text>
+
         </a-marker>
 
         <!-- Marcador de QR -->
@@ -42,3 +50,4 @@
     </a-scene>
 </body>
 </html>
+
