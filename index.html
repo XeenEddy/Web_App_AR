@@ -1,51 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>AR Web App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR UI Panel</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
         
-        <!-- Cursor para detectar clics -->
-        <a-entity cursor="rayOrigin: mouse"></a-entity>
-
-        <!-- Marcador de imagen -->
+        <!-- Marcador que mostrará el panel de UI -->
         <a-marker type="pattern" url="assets/pattern-marker.patt">
+            
+            <!-- Panel de UI (fondo blanco) -->
+            <a-plane position="0 0 0" width="1.5" height="1" material="color: white; opacity: 0.9">
+                
+                <!-- Título -->
+                <a-text value="Raíces Hedonistas" position="0 0.35 0.01" align="center" color="black" width="1.4"></a-text>
 
-            <!-- Texto visible correctamente -->
-            <a-text value="¡Hola Mundo!" position="0 0.5 0" scale="2 2 2" color="red" rotation="-90 0 0"></a-text>
-
-            <!-- Botón 1 -->
-            <a-plane position="-0.3 0.2 0" rotation="-90 0 0" width="0.4" height="0.2" material="color: white" class="boton"
-                     event-set__click="_event: click; _target: #msg; value: 'Botón 1 presionado'; color: red;">
-                <a-text value="Hola Mundo" align="center" position="0 0 0.01" color="black" scale="0.5 0.5 0.5" rotation="-90 0 0"></a-text>
+                <!-- Cuerpo del texto -->
+                <a-text value="El paso clásico 'Lorem ipsum dolor sit amet…'\n\nSe atribuye a una remixación del texto de De Finibus Bonorum et Malorum ('En los extremos del bien y del mal'), del filósofo romano Cicerón, de 45 aC." 
+                        position="0 0 0.01" align="center" color="black" width="1.4" wrap-count="40"></a-text>
             </a-plane>
-
-            <!-- Botón 2 -->
-            <a-plane position="0 0.2 0" rotation="-90 0 0" width="0.4" height="0.2" material="color: white" class="boton"
-                     event-set__click="_event: click; _target: #msg; value: 'Botón 2 presionado'; color: green;">
-                <a-text value="Hola Mundo" align="center" position="0 0 0.01" color="black" scale="0.5 0.5 0.5" rotation="-90 0 0"></a-text>
-            </a-plane>
-
-            <!-- Botón 3 -->
-            <a-plane position="0.3 0.2 0" rotation="-90 0 0" width="0.4" height="0.2" material="color: white" class="boton"
-                     event-set__click="_event: click; _target: #msg; value: 'Botón 3 presionado'; color: blue;">
-                <a-text value="Hola Mundo" align="center" position="0 0 0.01" color="black" scale="0.5 0.5 0.5" rotation="-90 0 0"></a-text>
-            </a-plane>
-
-            <!-- Mensaje de interacción -->
-            <a-text id="msg" value="Presiona un botón" position="0 -0.5 0" scale="1 1 1" color="yellow" rotation="-90 0 0"></a-text>
-
-        </a-marker>
-
-        <!-- Marcador de QR -->
-        <a-marker type="barcode" value="123">
-            <a-text value="Código QR Detectado" position="0 0 0" scale="1 1 1" color="cyan"></a-text>
+            
         </a-marker>
 
         <a-entity camera></a-entity>
     </a-scene>
 </body>
 </html>
+
