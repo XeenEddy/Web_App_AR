@@ -21,16 +21,16 @@
 
                 <!-- Botones -->
                 <a-entity position="1.6 -0.3 0">
-                    <a-circle position="-0.5 0.8 0" radius="0.12" material="color: gray"></a-circle>
-                    <a-circle position="-0.25 0.8 0" radius="0.12" material="color: gray"></a-circle>
-                    <a-circle position="0 0.8 0" radius="0.12" material="color: gray"></a-circle>
-                    <a-circle position="0.25 0.8 0" radius="0.12" material="color: gray"></a-circle>
-                    <a-circle position="0.5 0.8 0" radius="0.12" material="color: gray"></a-circle>
+                    <a-circle id="button1" position="-0.5 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
+                    <a-circle id="button2" position="-0.25 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
+                    <a-circle id="button3" position="0 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
+                    <a-circle id="button4" position="0.25 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
+                    <a-circle id="button5" position="0.5 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
                 </a-entity>
 
                 <!-- Panel de Información -->
-                <a-plane position="1.5 0 -0.2" width="1.8" height="0.6" material="color: white; opacity: 0.9">
-                    <a-text value="Empleamos más de 64,000 personas en 80 oficinas de todo el mundo." position="0 0 0.1" align="center" color="black" width="1.7"></a-text>
+                <a-plane id="info-panel" position="1.5 0 -0.2" width="1.8" height="0.6" material="color: white; opacity: 0.9">
+                    <a-text id="info-text" value="Empleamos más de 64,000 personas en 80 oficinas de todo el mundo." position="0 0 0.1" align="center" color="black" width="1.7"></a-text>
                 </a-plane>
 
             </a-entity>
@@ -44,6 +44,7 @@
     <script>
         let marker = document.querySelector("#marker");
         let uiContainer = document.querySelector("#ui-container");
+        let infoText = document.querySelector("#info-text");
 
         marker.addEventListener("markerFound", () => {
             uiContainer.setAttribute("animation", "property: scale; to: 1 1 1; dur: 500; easing: easeOutElastic");
@@ -51,6 +52,34 @@
 
         marker.addEventListener("markerLost", () => {
             uiContainer.setAttribute("animation", "property: scale; to: 0 0 0; dur: 300; easing: easeInBack");
+        });
+
+        // Función para cambiar el texto según el botón presionado
+        function changeText(buttonId) {
+            switch(buttonId) {
+                case "button1":
+                    infoText.setAttribute("value", "Texto 1: Empleamos más de 64,000 personas en todo el mundo.");
+                    break;
+                case "button2":
+                    infoText.setAttribute("value", "Texto 2: Tenemos 80 oficinas en diferentes países.");
+                    break;
+                case "button3":
+                    infoText.setAttribute("value", "Texto 3: Nos especializamos en tecnología y innovación.");
+                    break;
+                case "button4":
+                    infoText.setAttribute("value", "Texto 4: Nuestros empleados son nuestro mayor activo.");
+                    break;
+                case "button5":
+                    infoText.setAttribute("value", "Texto 5: La diversidad es clave en nuestra organización.");
+                    break;
+            }
+        }
+
+        // Añadir evento de click a los botones
+        document.querySelectorAll(".button").forEach(button => {
+            button.addEventListener("click", () => {
+                changeText(button.id);
+            });
         });
     </script>
 
