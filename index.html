@@ -10,30 +10,49 @@
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
         
-        <!-- Marcador AR -->
+        <!-- Marcador -->
         <a-marker type="pattern" url="assets/pattern-marker.patt" id="marker">
-            <a-entity>
-            <!-- Imagen de portada -->
-            <a-plane position="0 0.2 0" width="1.5" height="1.5" material="src: assets/PINTURA1_EMPLEADOS.png;"></a-plane>
-            
-            <!-- Botones -->
-            <a-entity position="0 -0.6 0">
-                <a-circle position="-0.6 0 0.1" radius="0.15" material="color: gray;"></a-circle>
-                <a-circle position="-0.3 0 0.1" radius="0.15" material="color: gray;"></a-circle>
-                <a-circle position="0 0 0.1" radius="0.15" material="color: white;"></a-circle>
-                <a-circle position="0.3 0 0.1" radius="0.15" material="color: gray;"></a-circle>
-                <a-circle position="0.6 0 0.1" radius="0.15" material="color: gray;"></a-circle>
+
+            <!-- Contenedor para agrupar panel y botones -->
+            <a-entity id="ui-container" position="0 0.5 0" rotation="0 0 0" scale="0 0 0">
+                
+                <!-- Imagen de portada -->
+                <a-image src="assets/PINTURA1_EMPLEADOS.png" position="0 0.5 0" width="1.5" height="1.5"></a-image>
+
+                <!-- Botones -->
+                <a-entity position="0 0.1 0">
+                    <a-circle position="-0.5 -0.8 0" radius="0.1" material="color: gray"></a-circle>
+                    <a-circle position="-0.25 -0.8 0" radius="0.1" material="color: gray"></a-circle>
+                    <a-circle position="0 -0.8 0" radius="0.1" material="color: gray"></a-circle>
+                    <a-circle position="0.25 -0.8 0" radius="0.1" material="color: gray"></a-circle>
+                    <a-circle position="0.5 -0.8 0" radius="0.1" material="color: gray"></a-circle>
+                </a-entity>
+
+                <!-- Panel de Información -->
+                <a-plane position="0 -1.2 0" width="1.8" height="0.6" material="color: white; opacity: 0.9">
+                    <a-text value="Empleamos más de 64,000 personas en 80 oficinas de todo el mundo." position="0 0 0.1" align="center" color="black" width="1.7"></a-text>
+                </a-plane>
+
             </a-entity>
-            
-            <!-- Panel de información -->
-            <a-plane position="0 -1.2 0" width="1.8" height="0.8" material="color: lightgray; opacity: 0.9">
-                <a-text value="Empleamos: \n A más de 64,000 personas \n en 80 oficinas en todo el mundo \n y comercializamos en 170 países." 
-                        position="0 0 0.1" align="center" color="black" width="1.6"></a-text>
-            </a-plane>
-</a-entity>
+
         </a-marker>
 
         <a-entity camera></a-entity>
+
     </a-scene>
+
+    <script>
+        let marker = document.querySelector("#marker");
+        let uiContainer = document.querySelector("#ui-container");
+
+        marker.addEventListener("markerFound", () => {
+            uiContainer.setAttribute("animation", "property: scale; to: 1 1 1; dur: 500; easing: easeOutElastic");
+        });
+
+        marker.addEventListener("markerLost", () => {
+            uiContainer.setAttribute("animation", "property: scale; to: 0 0 0; dur: 300; easing: easeInBack");
+        });
+    </script>
+
 </body>
 </html>
