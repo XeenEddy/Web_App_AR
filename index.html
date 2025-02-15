@@ -13,14 +13,14 @@
         <!-- Marcador -->
         <a-marker type="pattern" url="assets/pattern-marker.patt" id="marker">
 
-            <!-- Contenedor para agrupar panel y botones -->
-            <a-entity id="ui-container" position="0 0.5 0" rotation="0 0 0" scale="0 0 0">
+            <!-- Contenedor principal (corregida la rotación) -->
+            <a-entity id="ui-container" position="0 0.5 0" rotation="-90 0 0" scale="0 0 0">
                 
                 <!-- Imagen de portada -->
-                <a-image src="assets/PINTURA1_EMPLEADOS.png" position="0 0.5 0" width="1.5" height="1.5"></a-image>
+                <a-image src="assets/PINTURA1_EMPLEADOS.png" position="0 0.7 0" width="1.5" height="1.5"></a-image>
 
                 <!-- Botones -->
-                <a-entity position="0 0.1 0">
+                <a-entity position="0 -0.3 0">
                     <a-circle position="-0.5 -0.8 0" radius="0.1" material="color: gray"></a-circle>
                     <a-circle position="-0.25 -0.8 0" radius="0.1" material="color: gray"></a-circle>
                     <a-circle position="0 -0.8 0" radius="0.1" material="color: gray"></a-circle>
@@ -29,7 +29,7 @@
                 </a-entity>
 
                 <!-- Panel de Información -->
-                <a-plane position="0 -1.2 0" width="1.8" height="0.6" material="color: white; opacity: 0.9">
+                <a-plane position="0 -1 0" width="1.8" height="0.6" material="color: white; opacity: 0.9">
                     <a-text value="Empleamos más de 64,000 personas en 80 oficinas de todo el mundo." position="0 0 0.1" align="center" color="black" width="1.7"></a-text>
                 </a-plane>
 
