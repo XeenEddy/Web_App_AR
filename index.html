@@ -101,5 +101,30 @@
         });
     </script>
 
+<script>
+    // Definir texturas normales y activas
+    const buttonTextures = {
+        button1: { normal: "assets/t1_btn1.png", active: "assets/t1_btn1A.png" },
+        button2: { normal: "assets/t1_btn2.png", active: "assets/t1_btn2A.png" },
+        button3: { normal: "assets/t1_btn3.png", active: "assets/t1_btn3A.png" },
+        button4: { normal: "assets/t1_btn4.png", active: "assets/t1_btn4A.png" },
+        button5: { normal: "assets/t1_btn5.png", active: "assets/t1_btn5A.png" }
+    };
+
+    // Obtener todos los botones
+    document.querySelectorAll(".button").forEach(button => {
+        // Evento cuando el cursor entra
+        button.addEventListener("mouseenter", () => {
+            button.setAttribute("src", buttonTextures[button.id].active);
+        });
+
+        // Evento cuando el cursor sale
+        button.addEventListener("mouseleave", () => {
+            button.setAttribute("src", buttonTextures[button.id].normal);
+        });
+    });
+</script>
+
+
 </body>
 </html>
