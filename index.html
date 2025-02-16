@@ -54,25 +54,40 @@
             uiContainer.setAttribute("animation", "property: scale; to: 0 0 0; dur: 300; easing: easeInBack");
         });
 
-        // Función para cambiar el texto según el botón presionado
+        // Función para simular el efecto de tipeo
+        function typeText(text, element) {
+            let i = 0;
+            element.setAttribute('value', '');  // Borra el texto actual
+            let interval = setInterval(() => {
+                element.setAttribute('value', text.substring(0, i));
+                i++;
+                if (i > text.length) {
+                    clearInterval(interval);
+                }
+            }, 100); // Ajusta la velocidad de escritura aquí
+        }
+
+        // Función para cambiar el texto con tipo de animación
         function changeText(buttonId) {
+            let newText = '';
             switch(buttonId) {
                 case "button1":
-                    infoText.setAttribute("value", "Texto 1: Empleamos más de 64,000 personas en todo el mundo.");
+                    newText = "Texto 1: Empleamos más de 64,000 personas en todo el mundo.";
                     break;
                 case "button2":
-                    infoText.setAttribute("value", "Texto 2: Tenemos 80 oficinas en diferentes países.");
+                    newText = "Texto 2: Tenemos 80 oficinas en diferentes países.";
                     break;
                 case "button3":
-                    infoText.setAttribute("value", "Texto 3: Nos especializamos en tecnología y innovación.");
+                    newText = "Texto 3: Nos especializamos en tecnología y innovación.";
                     break;
                 case "button4":
-                    infoText.setAttribute("value", "Texto 4: Nuestros empleados son nuestro mayor activo.");
+                    newText = "Texto 4: Nuestros empleados son nuestro mayor activo.";
                     break;
                 case "button5":
-                    infoText.setAttribute("value", "Texto 5: La diversidad es clave en nuestra organización.");
+                    newText = "Texto 5: La diversidad es clave en nuestra organización.";
                     break;
             }
+            typeText(newText, infoText); // Llama a la función para escribir el texto
         }
 
         // Añadir evento de click a los botones
