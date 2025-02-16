@@ -21,11 +21,11 @@
 
                 <!-- Botones -->
                 <a-entity position="1.6 -0.3 0">
-                    <a-circle id="button1" position="-0.5 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
-                    <a-circle id="button2" position="-0.25 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
-                    <a-circle id="button3" position="0 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
-                    <a-circle id="button4" position="0.25 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
-                    <a-circle id="button5" position="0.5 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
+                    <a-circle id="button1" position="-0.5 0.8 0" radius="0.12" material="color: gray" class="button" clickable></a-circle>
+                    <a-circle id="button2" position="-0.25 0.8 0" radius="0.12" material="color: gray" class="button" clickable></a-circle>
+                    <a-circle id="button3" position="0 0.8 0" radius="0.12" material="color: gray" class="button" clickable></a-circle>
+                    <a-circle id="button4" position="0.25 0.8 0" radius="0.12" material="color: gray" class="button" clickable></a-circle>
+                    <a-circle id="button5" position="0.5 0.8 0" radius="0.12" material="color: gray" class="button" clickable></a-circle>
                 </a-entity>
 
                 <!-- Panel de Información -->
@@ -37,7 +37,10 @@
 
         </a-marker>
 
-        <a-entity camera></a-entity>
+        <!-- Agregar un cursor para interactuar con los botones -->
+        <a-entity camera>
+            <a-cursor></a-cursor>
+        </a-entity>
 
     </a-scene>
 
