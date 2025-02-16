@@ -59,7 +59,7 @@
             let i = 0;
             element.setAttribute('value', '');  // Borra el texto actual
             let interval = setInterval(() => {
-                element.setAttribute('value', text.substring(0, i));
+                element.setAttribute('value', text.substring(0, i));  // Actualiza el texto
                 i++;
                 if (i > text.length) {
                     clearInterval(interval);
