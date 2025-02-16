@@ -19,13 +19,13 @@
                 <!-- Imagen de portada -->
                 <a-image src="assets/PINTURA1_EMPLEADOS.png" position="0 0.7 0" width="1.5" height="1.5"></a-image>
 
-                <!-- Botones -->
-                <a-entity position="1.6 -0.3 0">
-                    <a-circle id="button1" position="-0.5 0.8 0" radius="0.12" material="color: gray" class="button" static-body></a-circle>
-                    <a-circle id="button2" position="-0.25 0.8 0" radius="0.12" material="color: gray" class="button" static-body></a-circle>
-                    <a-circle id="button3" position="0 0.8 0" radius="0.12" material="color: gray" class="button" static-body></a-circle>
-                    <a-circle id="button4" position="0.25 0.8 0" radius="0.12" material="color: gray" class="button" static-body></a-circle>
-                    <a-circle id="button5" position="0.5 0.8 0" radius="0.12" material="color: gray" class="button" static-body></a-circle>
+                <!-- Botones (donde no es necesario presionar, sino deslizar) -->
+                <a-entity position="1.6 -0.3 0" touchstart="startSwipe" touchmove="moveSwipe" touchend="endSwipe">
+                    <a-circle id="button1" position="-0.5 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
+                    <a-circle id="button2" position="-0.25 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
+                    <a-circle id="button3" position="0 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
+                    <a-circle id="button4" position="0.25 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
+                    <a-circle id="button5" position="0.5 0.8 0" radius="0.12" material="color: gray" class="button"></a-circle>
                 </a-entity>
 
                 <!-- Panel de Información -->
@@ -93,12 +93,56 @@
             typeText(newText, infoText); // Llama a la función para escribir el texto
         }
 
-        // Añadir evento de click a los botones
-        document.querySelectorAll(".button").forEach(button => {
-            button.addEventListener("click", () => {
-                changeText(button.id);
-            });
-        });
+        // Variables para el deslizamiento
+        let swipeStartX = 0;
+        let swipeStartY = 0;
+        let swipeThreshold = 50; // Umbral mínimo para detectar un deslizamiento
+
+        // Función para iniciar el deslizamiento
+        function startSwipe(evt) {
+            swipeStartX = evt.touches[0].clientX;
+            swipeStartY = evt.touches[0].clientY;
+        }
+
+        // Función para mover el deslizamiento
+        function moveSwipe(evt) {
+            evt.preventDefault(); // Evita el comportamiento por defecto (desplazamiento)
+        }
+
+        // Función para terminar el deslizamiento
+        function endSwipe(evt) {
+            let swipeEndX = evt.changedTouches[0].clientX;
+            let swipeEndY = evt.changedTouches[0].clientY;
+
+            // Detectar la dirección del deslizamiento
+            let deltaX = swipeEndX - swipeStartX;
+            let deltaY = swipeEndY - swipeStartY;
+
+            // Si el deslizamiento es horizontal
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > swipeThreshold) {
+                if (deltaX > 0) {
+                    // Deslizar hacia la derecha
+                    console.log("Deslizar hacia la derecha");
+                    changeText("button2"); // Cambiar al texto 2
+                } else {
+                    // Deslizar hacia la izquierda
+                    console.log("Deslizar hacia la izquierda");
+                    changeText("button4"); // Cambiar al texto 4
+                }
+            }
+            // Si el deslizamiento es vertical
+            else if (Math.abs(deltaY) > swipeThreshold) {
+                if (deltaY > 0) {
+                    // Deslizar hacia abajo
+                    console.log("Deslizar hacia abajo");
+                    changeText("button3"); // Cambiar al texto 3
+                } else {
+                    // Deslizar hacia arriba
+                    console.log("Deslizar hacia arriba");
+                    changeText("button5"); // Cambiar al texto 5
+                }
+            }
+        }
     </script>
 
 </body>
