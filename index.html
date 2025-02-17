@@ -142,12 +142,12 @@
             let uiContainer2 = document.querySelector("#ui-container2");
             let infoText2 = document.querySelector("#info-text2");
     
-            marker.addEventListener("markerFound", () => {
-                uiContainer.setAttribute("animation", "property: scale; to: 1 1 1; dur: 500; easing: easeOutElastic");
+            marker2.addEventListener("markerFound", () => {
+                uiContainer2.setAttribute("animation", "property: scale; to: 1 1 1; dur: 500; easing: easeOutElastic");
             });
     
-            marker.addEventListener("markerLost", () => {
-                uiContainer.setAttribute("animation", "property: scale; to: 0 0 0; dur: 300; easing: easeInBack");
+            marker2.addEventListener("markerLost", () => {
+                uiContainer2.setAttribute("animation", "property: scale; to: 0 0 0; dur: 300; easing: easeInBack");
             });
     
             // Función para simular el efecto de tipeo
@@ -183,7 +183,7 @@
                         newText = "Generamos: 232.3 billones de ventas netas en DKK.";
                         break;
                 }
-                typeText(newText, infoText); // Llama a la función para escribir el texto
+                typeText(newText, infoText2); // Llama a la función para escribir el texto
             }
     
             // Añadir evento de mouseenter a los botones
@@ -224,11 +224,11 @@
 <script>
     // Definir texturas normales y activas
     const buttonTextures2 = {
-        button1: { normal: "assets/t2_btn1.png", active: "assets/t2_btn1A.png" },
-        button2: { normal: "assets/t2_btn2.png", active: "assets/t2_btn2A.png" },
-        button3: { normal: "assets/t2_btn3.png", active: "assets/t2_btn3A.png" },
-        button4: { normal: "assets/t2_btn4.png", active: "assets/t2_btn4A.png" },
-        button5: { normal: "assets/t2_btn5.png", active: "assets/t2_btn5A.png" }
+        button1_: { normal: "assets/t2_btn1.png", active: "assets/t2_btn1A.png" },
+        button2_: { normal: "assets/t2_btn2.png", active: "assets/t2_btn2A.png" },
+        button3_: { normal: "assets/t2_btn3.png", active: "assets/t2_btn3A.png" },
+        button4_: { normal: "assets/t2_btn4.png", active: "assets/t2_btn4A.png" },
+        button5_: { normal: "assets/t2_btn5.png", active: "assets/t2_btn5A.png" }
     };
 
     // Obtener todos los botones
