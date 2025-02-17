@@ -151,39 +151,39 @@
             });
     
             // Función para simular el efecto de tipeo
-            function typeText(text, element) {
-                let i = 0;
-                element.setAttribute('value', '');  // Borra el texto actual
-                let interval = setInterval(() => {
-                    element.setAttribute('value', text.substring(0, i));  // Actualiza el texto
-                    i++;
-                    if (i > text.length) {
-                        clearInterval(interval);
+            function typeText(text2, element2) {
+                let a = 0;
+                element2.setAttribute('value', '');  // Borra el texto actual
+                let interval2 = setInterval(() => {
+                    element2.setAttribute('value', text2.substring(0, i));  // Actualiza el texto
+                    a++;
+                    if (a > text2.length) {
+                        clearInterval(interval2);
                     }
                 }, 10); // Ajusta la velocidad de escritura aquí
             }
     
             // Función para cambiar el texto con tipo de animación
-            function changeText(buttonId) {
-                let newText = '';
-                switch(buttonId) {
+            function changeText(buttonId2) {
+                let newText2 = '';
+                switch(buttonId2) {
                     case "button1_":
-                        newText = "Nuestro propósito es: Impulsar el cambio para vencer la diabetes y otras enfermedades crónicas graves como la obesidad, las enfermedades raras de la sangre y endocrinas.";
+                        newText2 = "Nuestro propósito es: Impulsar el cambio para vencer la diabetes y otras enfermedades crónicas graves como la obesidad, las enfermedades raras de la sangre y endocrinas.";
                         break;
                     case "button2_":
-                        newText = "Empleamos: A más de 64,000 personas en 80 oficinas en todo el mundo, y comercializamos nuestros productos en 170 países.";
+                        newText2 = "Empleamos: A más de 64,000 personas en 80 oficinas en todo el mundo, y comercializamos nuestros productos en 170 países.";
                         break;
                     case "button3_":
-                        newText = "Pertenecemos: al Top 5 de farmacéuticas por nuestro valor del mercado.";
+                        newText2 = "Pertenecemos: al Top 5 de farmacéuticas por nuestro valor del mercado.";
                         break;
                     case "button4_":
-                        newText = "Tenemos: Más de 40 millones de pacientes que utilizan nuestros productos.";
+                        newText2 = "Tenemos: Más de 40 millones de pacientes que utilizan nuestros productos.";
                         break;
                     case "button5_":
-                        newText = "Generamos: 232.3 billones de ventas netas en DKK.";
+                        newText2 = "Generamos: 232.3 billones de ventas netas en DKK.";
                         break;
                 }
-                typeText(newText, infoText2); // Llama a la función para escribir el texto
+                typeText(newText2, infoText2); // Llama a la función para escribir el texto
             }
     
             // Añadir evento de mouseenter a los botones
