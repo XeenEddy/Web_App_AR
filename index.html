@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,55 +10,50 @@
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
         
-        <!-- Marcador -->
-        <a-marker type="pattern" url="assets/pattern-t1_cover.patt" id="marker">
-
-            <!-- Contenedor principal -->
-            <a-entity id="ui-container" position="0 0.5 0" rotation="-90 0 0" scale="0 0 0">
+        <!-- Marcador 1 -->
+        <a-marker type="pattern" url="assets/pattern-t1_cover.patt" id="marker1">
+            <a-entity id="ui-container1" position="0 0.5 0" rotation="-90 0 0" scale="0 0 0">
                 
                 <!-- Imagen de portada -->
                 <a-image src="assets/t1_coverA.png" position="0 0.7 0" width="1.5" height="1.5"></a-image>
 
-                <!--Imagen de titulo-->
-                <a-image src="assets/t1_title.png" position="0 1.5 0" width="1.4" height="0.2" ></a-image>
+                <!-- Imagen de título -->
+                <a-image src="assets/t1_title.png" position="0 1.5 0" width="1.4" height="0.2"></a-image>
 
                 <!-- Botones -->
                 <a-entity position="1.6 -0.3 0">
-                    <a-image id="button1" src="assets/t1_btn1.png" position="-0.5 0.8 0" width="0.25" height="0.25" class="button"></a-image>
-                    <a-image id="button2" src="assets/t1_btn2.png" position="-0.25 0.8 0" width="0.25" height="0.25" class="button"></a-image>
-                    <a-image id="button3" src="assets/t1_btn3.png" position="0 0.8 0" width="0.25" height="0.25" class="button"></a-image>
-                    <a-image id="button4" src="assets/t1_btn4.png" position="0.25 0.8 0" width="0.25" height="0.25" class="button"></a-image>
-                    <a-image id="button5" src="assets/t1_btn5.png" position="0.5 0.8 0" width="0.25" height="0.25" class="button"></a-image>
+                    <a-image id="button1" src="assets/t1_btn1.png" position="-0.5 0.8 0" width="0.25" height="0.25" class="button button1"></a-image>
+                    <a-image id="button2" src="assets/t1_btn2.png" position="-0.25 0.8 0" width="0.25" height="0.25" class="button button1"></a-image>
+                    <a-image id="button3" src="assets/t1_btn3.png" position="0 0.8 0" width="0.25" height="0.25" class="button button1"></a-image>
+                    <a-image id="button4" src="assets/t1_btn4.png" position="0.25 0.8 0" width="0.25" height="0.25" class="button button1"></a-image>
+                    <a-image id="button5" src="assets/t1_btn5.png" position="0.5 0.8 0" width="0.25" height="0.25" class="button button1"></a-image>
                 </a-entity>
 
                 <!-- Panel de Información -->
-                <a-plane id="info-panel" position="1.5 0 0.2" width="1.8" height="0.6" material="color: white;">
-                    <a-text id="info-text" value="Empleamos más de 64,000 personas en 80 oficinas de todo el mundo." position="0 0 0.2" align="center" color="black" width="1.7"></a-text>
+                <a-plane id="info-panel1" position="1.5 0 0.2" width="1.8" height="0.6" material="color: white;">
+                    <a-text id="info-text1" value="Empleamos más de 64,000 personas en 80 oficinas de todo el mundo." position="0 0 0.2" align="center" color="black" width="1.7"></a-text>
                 </a-plane>
 
             </a-entity>
-
         </a-marker>
 
-<!--#2-->
+        <!-- Marcador 2 -->
         <a-marker type="pattern" url="assets/pattern-t2_cover.patt" id="marker2">
-
-            <!-- Contenedor principal -->
             <a-entity id="ui-container2" position="0 0.5 0" rotation="-90 0 0" scale="0 0 0">
                 
                 <!-- Imagen de portada -->
                 <a-image src="assets/t2_coverA.png" position="0 0.7 0" width="1.5" height="1.5"></a-image>
 
-                <!--Imagen de titulo-->
-                <a-image src="assets/t2_title.png" position="0 1.5 0" width="1.4" height="0.2" ></a-image>
+                <!-- Imagen de título -->
+                <a-image src="assets/t2_title.png" position="0 1.5 0" width="1.4" height="0.2"></a-image>
 
                 <!-- Botones -->
                 <a-entity position="1.6 -0.3 0">
-                    <a-image id="button1_" src="assets/t2_btn1.png" position="-0.5 0.8 0" width="0.25" height="0.25" class="button"></a-image>
-                    <a-image id="button2_" src="assets/t2_btn2.png" position="-0.25 0.8 0" width="0.25" height="0.25" class="button"></a-image>
-                    <a-image id="button3_" src="assets/t2_btn3.png" position="0 0.8 0" width="0.25" height="0.25" class="button"></a-image>
-                    <a-image id="button4_" src="assets/t2_btn4.png" position="0.25 0.8 0" width="0.25" height="0.25" class="button"></a-image>
-                    <a-image id="button5_" src="assets/t2_btn5.png" position="0.5 0.8 0" width="0.25" height="0.25" class="button"></a-image>
+                    <a-image id="button1_" src="assets/t2_btn1.png" position="-0.5 0.8 0" width="0.25" height="0.25" class="button button2"></a-image>
+                    <a-image id="button2_" src="assets/t2_btn2.png" position="-0.25 0.8 0" width="0.25" height="0.25" class="button button2"></a-image>
+                    <a-image id="button3_" src="assets/t2_btn3.png" position="0 0.8 0" width="0.25" height="0.25" class="button button2"></a-image>
+                    <a-image id="button4_" src="assets/t2_btn4.png" position="0.25 0.8 0" width="0.25" height="0.25" class="button button2"></a-image>
+                    <a-image id="button5_" src="assets/t2_btn5.png" position="0.5 0.8 0" width="0.25" height="0.25" class="button button2"></a-image>
                 </a-entity>
 
                 <!-- Panel de Información -->
@@ -68,7 +62,6 @@
                 </a-plane>
 
             </a-entity>
-
         </a-marker>
 
         <!-- Agregar un cursor para interactuar con los botones -->
@@ -78,173 +71,68 @@
 
     </a-scene>
 
-    <!--MARKER 1-->
     <script>
-        let marker = document.querySelector("#marker");
-        let uiContainer = document.querySelector("#ui-container");
-        let infoText = document.querySelector("#info-text");
+        function setupMarker(markerId, uiContainerId, textId, buttonClass) {
+            let marker = document.querySelector(markerId);
+            let uiContainer = document.querySelector(uiContainerId);
+            let infoText = document.querySelector(textId);
 
-        marker.addEventListener("markerFound", () => {
-            uiContainer.setAttribute("animation", "property: scale; to: 1 1 1; dur: 500; easing: easeOutElastic");
-        });
-
-        marker.addEventListener("markerLost", () => {
-            uiContainer.setAttribute("animation", "property: scale; to: 0 0 0; dur: 300; easing: easeInBack");
-        });
-
-        // Función para simular el efecto de tipeo
-        function typeText(text, element) {
-            let i = 0;
-            element.setAttribute('value', '');  // Borra el texto actual
-            let interval = setInterval(() => {
-                element.setAttribute('value', text.substring(0, i));  // Actualiza el texto
-                i++;
-                if (i > text.length) {
-                    clearInterval(interval);
-                }
-            }, 10); // Ajusta la velocidad de escritura aquí
-        }
-
-        // Función para cambiar el texto con tipo de animación
-        function changeText(buttonId) {
-            let newText = '';
-            switch(buttonId) {
-                case "button1":
-                    newText = "Nuestro propósito es: Impulsar el cambio para vencer la diabetes y otras enfermedades crónicas graves como la obesidad, las enfermedades raras de la sangre y endocrinas.";
-                    break;
-                case "button2":
-                    newText = "Empleamos: A más de 64,000 personas en 80 oficinas en todo el mundo, y comercializamos nuestros productos en 170 países.";
-                    break;
-                case "button3":
-                    newText = "Pertenecemos: al Top 5 de farmacéuticas por nuestro valor del mercado.";
-                    break;
-                case "button4":
-                    newText = "Tenemos: Más de 40 millones de pacientes que utilizan nuestros productos.";
-                    break;
-                case "button5":
-                    newText = "Generamos: 232.3 billones de ventas netas en DKK.";
-                    break;
-            }
-            typeText(newText, infoText); // Llama a la función para escribir el texto
-        }
-
-        // Añadir evento de mouseenter a los botones
-        document.querySelectorAll(".button").forEach(button => {
-            button.addEventListener("mouseenter", () => {
-                changeText(button.id); // Cambia el texto cuando el cursor entra en el botón
+            marker.addEventListener("markerFound", () => {
+                uiContainer.setAttribute("animation", "property: scale; to: 1 1 1; dur: 500; easing: easeOutElastic");
             });
-        });
-    </script>
 
-        <!--MARKER 2-->
-        <script>
-            let marker2 = document.querySelector("#marker2");
-            let uiContainer2 = document.querySelector("#ui-container2");
-            let infoText2 = document.querySelector("#info-text2");
-    
-            marker2.addEventListener("markerFound", () => {
-                uiContainer2.setAttribute("animation", "property: scale; to: 1 1 1; dur: 500; easing: easeOutElastic");
+            marker.addEventListener("markerLost", () => {
+                uiContainer.setAttribute("animation", "property: scale; to: 0 0 0; dur: 300; easing: easeInBack");
             });
-    
-            marker2.addEventListener("markerLost", () => {
-                uiContainer2.setAttribute("animation", "property: scale; to: 0 0 0; dur: 300; easing: easeInBack");
-            });
-    
-            // Función para simular el efecto de tipeo
-            function typeText(text2, element2) {
-                let a = 0;
-                element2.setAttribute('value', '');  // Borra el texto actual
-                let interval2 = setInterval(() => {
-                    element2.setAttribute('value', text2.substring(0, i));  // Actualiza el texto
-                    a++;
-                    if (a > text2.length) {
-                        clearInterval(interval2);
+
+            function typeText(text, element) {
+                let i = 0;
+                element.setAttribute('value', '');
+                let interval = setInterval(() => {
+                    element.setAttribute('value', text.substring(0, i));
+                    i++;
+                    if (i > text.length) {
+                        clearInterval(interval);
                     }
-                }, 10); // Ajusta la velocidad de escritura aquí
+                }, 10);
             }
-    
-            // Función para cambiar el texto con tipo de animación
-            function changeText(buttonId2) {
-                let newText2 = '';
-                switch(buttonId2) {
+
+            function changeText(buttonId) {
+                let newText = '';
+                switch(buttonId) {
+                    case "button1":
                     case "button1_":
-                        newText2 = "Nuestro propósito es: Impulsar el cambio para vencer la diabetes y otras enfermedades crónicas graves como la obesidad, las enfermedades raras de la sangre y endocrinas.";
+                        newText = "Texto 1 del marcador.";
                         break;
+                    case "button2":
                     case "button2_":
-                        newText2 = "Empleamos: A más de 64,000 personas en 80 oficinas en todo el mundo, y comercializamos nuestros productos en 170 países.";
+                        newText = "Texto 2 del marcador.";
                         break;
+                    case "button3":
                     case "button3_":
-                        newText2 = "Pertenecemos: al Top 5 de farmacéuticas por nuestro valor del mercado.";
+                        newText = "Texto 3 del marcador.";
                         break;
+                    case "button4":
                     case "button4_":
-                        newText2 = "Tenemos: Más de 40 millones de pacientes que utilizan nuestros productos.";
+                        newText = "Texto 4 del marcador.";
                         break;
+                    case "button5":
                     case "button5_":
-                        newText2 = "Generamos: 232.3 billones de ventas netas en DKK.";
+                        newText = "Texto 5 del marcador.";
                         break;
                 }
-                typeText(newText2, infoText2); // Llama a la función para escribir el texto
+                typeText(newText, infoText);
             }
-    
-            // Añadir evento de mouseenter a los botones
-            document.querySelectorAll(".button").forEach(button => {
+
+            document.querySelectorAll(buttonClass).forEach(button => {
                 button.addEventListener("mouseenter", () => {
-                    changeText(button.id); // Cambia el texto cuando el cursor entra en el botón
+                    changeText(button.id);
                 });
             });
-        </script>
+        }
 
-
-<!--MARKER 1 BTNS-->
-<script>
-    // Definir texturas normales y activas
-    const buttonTextures = {
-        button1: { normal: "assets/t1_btn1.png", active: "assets/t1_btn1A.png" },
-        button2: { normal: "assets/t1_btn2.png", active: "assets/t1_btn2A.png" },
-        button3: { normal: "assets/t1_btn3.png", active: "assets/t1_btn3A.png" },
-        button4: { normal: "assets/t1_btn4.png", active: "assets/t1_btn4A.png" },
-        button5: { normal: "assets/t1_btn5.png", active: "assets/t1_btn5A.png" }
-    };
-
-    // Obtener todos los botones
-    document.querySelectorAll(".button").forEach(button => {
-        // Evento cuando el cursor entra
-        button.addEventListener("mouseenter", () => {
-            button.setAttribute("src", buttonTextures[button.id].active);
-        });
-
-        // Evento cuando el cursor sale
-        button.addEventListener("mouseleave", () => {
-            button.setAttribute("src", buttonTextures[button.id].normal);
-        });
-    });
-</script>
-
-<!--MARKER 2 BTNS-->
-<script>
-    // Definir texturas normales y activas
-    const buttonTextures2 = {
-        button1_: { normal: "assets/t2_btn1.png", active: "assets/t2_btn1A.png" },
-        button2_: { normal: "assets/t2_btn2.png", active: "assets/t2_btn2A.png" },
-        button3_: { normal: "assets/t2_btn3.png", active: "assets/t2_btn3A.png" },
-        button4_: { normal: "assets/t2_btn4.png", active: "assets/t2_btn4A.png" },
-        button5_: { normal: "assets/t2_btn5.png", active: "assets/t2_btn5A.png" }
-    };
-
-    // Obtener todos los botones
-    document.querySelectorAll(".button").forEach(button => {
-        // Evento cuando el cursor entra
-        button.addEventListener("mouseenter", () => {
-            button.setAttribute("src", buttonTextures[button.id].active);
-        });
-
-        // Evento cuando el cursor sale
-        button.addEventListener("mouseleave", () => {
-            button.setAttribute("src", buttonTextures[button.id].normal);
-        });
-    });
-</script>
-
-
+        setupMarker("#marker1", "#ui-container1", "#info-text1", ".button1");
+        setupMarker("#marker2", "#ui-container2", "#info-text2", ".button2");
+    </script>
 </body>
 </html>
