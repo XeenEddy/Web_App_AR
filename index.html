@@ -8,12 +8,12 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="trackingMethod: best;">
+    <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: true;"> <!-- Habilitar debug para ver mensajes en consola -->
 
         <!-- Marcador 1 (NFT) -->
         <a-nft
             type="nft"
-            url="assets/markers/t1_cover" <!-- Cambia esto por la ruta de tus archivos NFT -->
+            url="assets/markers/t1_cover" <!-- Asegúrate de que los archivos .fset, .fset3, .iset estén en esta ruta -->
             smooth="true"
             smoothCount="10"
             smoothTolerance="0.01"
@@ -37,7 +37,7 @@
         <!-- Marcador 2 (NFT) -->
         <a-nft
             type="nft"
-            url="assets/markers/t2_cover" <!-- Cambia esto por la ruta de tus archivos NFT -->
+            url="assets/markers/t2_cover" <!-- Asegúrate de que los archivos .fset, .fset3, .iset estén en esta ruta -->
             smooth="true"
             smoothCount="10"
             smoothTolerance="0.01"
@@ -74,11 +74,13 @@
 
             // Cuando se detecta el marcador, se muestra el contenido
             marker.addEventListener("markerFound", () => {
+                console.log(`Marcador ${markerId} detectado`); // Debug
                 container.setAttribute("animation", "property: scale; to: 1 1 1; dur: 500; easing: easeOutElastic");
             });
 
             // Cuando se pierde el marcador, se oculta el contenido
             marker.addEventListener("markerLost", () => {
+                console.log(`Marcador ${markerId} perdido`); // Debug
                 container.setAttribute("animation", "property: scale; to: 0 0 0; dur: 300; easing: easeInBack");
             });
 
@@ -104,7 +106,7 @@
                 button.addEventListener("mouseenter", () => {
                     changeImage(button.id);
                 });
-                button.addEventListener("mouseenter", () => {
+                button.addEventListener("click", () => {
                     selectButton(button);
                 });
             });
