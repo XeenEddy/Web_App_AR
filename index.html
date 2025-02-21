@@ -5,13 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEB APP AR Universal</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs>
+    <a-scene embedded arjs="trackingMethod: best;">
 
-        <!-- Marcador 1 -->
-        <a-marker type="pattern" url="assets/pattern-t1_coverv2.patt" id="marker1">
+        <!-- Marcador 1 (NFT) -->
+        <a-nft
+            type="nft"
+            url="assets/markers/t1_cover" <!-- Cambia esto por la ruta de tus archivos NFT -->
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance="0.01"
+            smoothThreshold="5"
+            id="marker1">
             <a-entity id="ui-container1" position="0 0.5 0" rotation="-90 0 0" scale="0 0 0">
                 <a-image src="assets/t1_coverA.png" position="0 0.7 0" width="1.5" height="1.5"></a-image>
                 <a-image src="assets/t1_title.png" position="0 1.5 0" width="1.4" height="0.2"></a-image>
@@ -25,10 +32,17 @@
                 <!-- Aquí se muestra la imagen en lugar del texto -->
                 <a-image id="info-image1" src="assets/t1_info0.png" position="1.5 0 0.2" width="1.8" height="0.6"></a-image>
             </a-entity>
-        </a-marker>
+        </a-nft>
 
-        <!-- Marcador 2 -->
-        <a-marker type="pattern" url="assets/pattern-t2_coverv2.patt" id="marker2">
+        <!-- Marcador 2 (NFT) -->
+        <a-nft
+            type="nft"
+            url="assets/markers/t2_cover" <!-- Cambia esto por la ruta de tus archivos NFT -->
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance="0.01"
+            smoothThreshold="5"
+            id="marker2">
             <a-entity id="ui-container2" position="0 0.5 0" rotation="-90 0 0" scale="0 0 0">
                 <a-image src="assets/t2_coverA.png" position="0 0.7 0" width="1.5" height="1.5"></a-image>
                 <a-image src="assets/t2_title.png" position="0 1.5 0" width="1.4" height="0.2"></a-image>
@@ -42,7 +56,7 @@
                 <!-- Aquí se muestra la imagen en lugar del texto -->
                 <a-image id="info-image2" src="assets/t2_info0.png" position="1.5 0 0.2" width="1.8" height="0.6"></a-image>
             </a-entity>
-        </a-marker>
+        </a-nft>
 
         <a-entity camera>
             <a-cursor></a-cursor>
