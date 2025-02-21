@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEB APP AR Universal</title>
+    <title>WEB APP AR Universal con MindAR</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        .arjs-loader { /* Estilo para el loader */ }
+    </style>
 </head>
-<body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: true;">
+<body>
+    <!-- Escena de MindAR -->
+    <a-scene mindar-image="imageTargetSrc: assets/targets.mind;" embedded renderer="colorManagement: true;" vr-mode-ui="enabled: false">
+        <!-- Cámara -->
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <!-- Marcador 1 (NFT) -->
-        <a-nft
-            type="nft"
-            url="assets/t1_cover" <!-- Ruta actualizada -->
-            smooth="true"
-            smoothCount="10"
-            smoothTolerance="0.01"
-            smoothThreshold="5"
-            id="marker1">
+        <!-- Contenido para la primera imagen (índice 0) -->
+        <a-entity mindar-image-target="targetIndex: 0;">
             <a-entity id="ui-container1" position="0 0.5 0" rotation="-90 0 0" scale="0 0 0">
                 <a-image src="assets/t1_coverA.png" position="0 0.7 0" width="1.5" height="1.5"></a-image>
                 <a-image src="assets/t1_title.png" position="0 1.5 0" width="1.4" height="0.2"></a-image>
@@ -32,17 +32,10 @@
                 <!-- Aquí se muestra la imagen en lugar del texto -->
                 <a-image id="info-image1" src="assets/t1_info0.png" position="1.5 0 0.2" width="1.8" height="0.6"></a-image>
             </a-entity>
-        </a-nft>
+        </a-entity>
 
-        <!-- Marcador 2 (NFT) -->
-        <a-nft
-            type="nft"
-            url="assets/t2_cover" <!-- Ruta actualizada -->
-            smooth="true"
-            smoothCount="10"
-            smoothTolerance="0.01"
-            smoothThreshold="5"
-            id="marker2">
+        <!-- Contenido para la segunda imagen (índice 1) -->
+        <a-entity mindar-image-target="targetIndex: 1;">
             <a-entity id="ui-container2" position="0 0.5 0" rotation="-90 0 0" scale="0 0 0">
                 <a-image src="assets/t2_coverA.png" position="0 0.7 0" width="1.5" height="1.5"></a-image>
                 <a-image src="assets/t2_title.png" position="0 1.5 0" width="1.4" height="0.2"></a-image>
@@ -56,12 +49,78 @@
                 <!-- Aquí se muestra la imagen en lugar del texto -->
                 <a-image id="info-image2" src="assets/t2_info0.png" position="1.5 0 0.2" width="1.8" height="0.6"></a-image>
             </a-entity>
-        </a-nft>
-
-        <a-entity camera>
-            <a-cursor></a-cursor>
         </a-entity>
-
     </a-scene>
+
+    <script>
+        // Función para configurar el comportamiento de los marcadores
+        function setupMarker(containerId, imageId, buttonClass, images, buttonTextures) {
+            let container = document.querySelector(containerId);
+            let infoImage = document.querySelector(imageId);
+            let selectedButton = null; // Para rastrear el botón seleccionado
+
+            // Cambia la imagen cuando se pasa el cursor sobre un botón
+            function changeImage(buttonId) {
+                let newImage = images[buttonId] || "assets/default_image.png"; // Usa una imagen por defecto si no hay coincidencia
+                infoImage.setAttribute('src', newImage);
+            }
+
+            // Cambia la textura del botón cuando se selecciona
+            function selectButton(button) {
+                if (selectedButton) {
+                    // Restablece la textura del botón previamente seleccionado
+                    selectedButton.setAttribute('src', buttonTextures[selectedButton.id].normal);
+                }
+                // Cambia la textura del botón seleccionado
+                button.setAttribute('src', buttonTextures[button.id].selected);
+                selectedButton = button; // Actualiza el botón seleccionado
+            }
+
+            // Asigna el evento "mouseenter" y "click" a cada botón
+            document.querySelectorAll(buttonClass).forEach(button => {
+                button.addEventListener("mouseenter", () => {
+                    changeImage(button.id);
+                });
+                button.addEventListener("click", () => {
+                    selectButton(button);
+                });
+            });
+        }
+
+        // Texturas para los botones (normal y seleccionado)
+        const buttonTextures1 = {
+            "button1": { normal: "assets/t1_btn1A.png", selected: "assets/t1_btn1.png" },
+            "button2": { normal: "assets/t1_btn2A.png", selected: "assets/t1_btn2.png" },
+            "button3": { normal: "assets/t1_btn3A.png", selected: "assets/t1_btn3.png" },
+            "button4": { normal: "assets/t1_btn4A.png", selected: "assets/t1_btn4.png" },
+            "button5": { normal: "assets/t1_btn5A.png", selected: "assets/t1_btn5.png" }
+        };
+
+        const buttonTextures2 = {
+            "button1_2": { normal: "assets/t2_btn1.png", selected: "assets/t2_btn1A.png" },
+            "button2_2": { normal: "assets/t2_btn2.png", selected: "assets/t2_btn2A.png" },
+            "button3_2": { normal: "assets/t2_btn3.png", selected: "assets/t2_btn3A.png" },
+            "button4_2": { normal: "assets/t2_btn4.png", selected: "assets/t2_btn4A.png" },
+            "button5_2": { normal: "assets/t2_btn5.png", selected: "assets/t2_btn5A.png" }
+        };
+
+        // Configuración para el primer marcador
+        setupMarker("#ui-container1", "#info-image1", ".button1", {
+            "button1": "assets/t1_info0.png", // Imagen para el botón 1
+            "button2": "assets/t1_info1.png", // Imagen para el botón 2
+            "button3": "assets/t1_info2.png", // Imagen para el botón 3
+            "button4": "assets/t1_info3.png", // Imagen para el botón 4
+            "button5": "assets/t1_info4.png"  // Imagen para el botón 5
+        }, buttonTextures1);
+
+        // Configuración para el segundo marcador
+        setupMarker("#ui-container2", "#info-image2", ".button2", {
+            "button1_2": "assets/t2_info0.png",  // Imagen para el botón 1
+            "button2_2": "assets/t2_info1.png",  // Imagen para el botón 2
+            "button3_2": "assets/t2_info2.png",  // Imagen para el botón 3
+            "button4_2": "assets/t2_info3.png",  // Imagen para el botón 4
+            "button5_2": "assets/t2_info4.png"  // Imagen para el botón 5
+        }, buttonTextures2);
+    </script>
 </body>
 </html>
