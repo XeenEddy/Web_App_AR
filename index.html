@@ -3,96 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebXR con Three.js</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r146/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.146/examples/js/loaders/GLTFLoader.js"></script>
-    <style>
-        body { margin: 0; overflow: hidden; }
-        canvas { display: block; }
-    </style>
+    <title>WEB APP AR Universal</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
-<body>
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs>
+
+        <!-- Marcador 1 -->
+        <a-marker type="pattern" url="assets/pattern-t1_coverv2.patt" id="marker1">
+            <a-entity id="ui-container1" position="0 0.5 0" rotation="-90 0 0" scale="0 0 0">
+                <a-image src="assets/t1_coverA.png" position="0 0.7 0" width="1.5" height="1.5"></a-image>
+                <a-image src="assets/t1_title.png" position="0 1.5 0" width="1.4" height="0.2"></a-image>
+                <a-entity position="1.6 -0.3 0">
+                    <a-image id="button1" src="assets/t1_btn1A.png" position="-0.5 0.8 0" width="0.25" height="0.25" class="button1"></a-image>
+                    <a-image id="button2" src="assets/t1_btn2A.png" position="-0.25 0.8 0" width="0.25" height="0.25" class="button1"></a-image>
+                    <a-image id="button3" src="assets/t1_btn3A.png" position="0 0.8 0" width="0.25" height="0.25" class="button1"></a-image>
+                    <a-image id="button4" src="assets/t1_btn4A.png" position="0.25 0.8 0" width="0.25" height="0.25" class="button1"></a-image>
+                    <a-image id="button5" src="assets/t1_btn5A.png" position="0.5 0.8 0" width="0.25" height="0.25" class="button1"></a-image>
+                </a-entity>
+                <!-- Aquí se muestra la imagen en lugar del texto -->
+                <a-image id="info-image1" src="assets/t1_info0.png" position="1.5 0 0.2" width="1.8" height="0.6"></a-image>
+            </a-entity>
+        </a-marker>
+
+        <!-- Marcador 2 -->
+        <a-marker type="pattern" url="assets/pattern-t2_coverv2.patt" id="marker2">
+            <a-entity id="ui-container2" position="0 0.5 0" rotation="-90 0 0" scale="0 0 0">
+                <a-image src="assets/t2_coverA.png" position="0 0.7 0" width="1.5" height="1.5"></a-image>
+                <a-image src="assets/t2_title.png" position="0 1.5 0" width="1.4" height="0.2"></a-image>
+                <a-entity position="1.6 -0.3 0">
+                    <a-image id="button1_2" src="assets/t2_btn1.png" position="-0.5 0.8 0" width="0.25" height="0.25" class="button2"></a-image>
+                    <a-image id="button2_2" src="assets/t2_btn2.png" position="-0.25 0.8 0" width="0.25" height="0.25" class="button2"></a-image>
+                    <a-image id="button3_2" src="assets/t2_btn3.png" position="0 0.8 0" width="0.25" height="0.25" class="button2"></a-image>
+                    <a-image id="button4_2" src="assets/t2_btn4.png" position="0.25 0.8 0" width="0.25" height="0.25" class="button2"></a-image>
+                    <a-image id="button5_2" src="assets/t2_btn5.png" position="0.5 0.8 0" width="0.25" height="0.25" class="button2"></a-image>
+                </a-entity>
+                <!-- Aquí se muestra la imagen en lugar del texto -->
+                <a-image id="info-image2" src="assets/t2_info0.png" position="1.5 0 0.2" width="1.8" height="0.6"></a-image>
+            </a-entity>
+        </a-marker>
+
+        <a-entity camera>
+            <a-cursor></a-cursor>
+        </a-entity>
+
+    </a-scene>
+
     <script>
-        let camera, scene, renderer;
-        let controller;
+        // Función para configurar el comportamiento de los marcadores
+        function setupMarker(markerId, containerId, imageId, buttonClass, images, buttonTextures) {
+            let marker = document.querySelector(markerId);
+            let container = document.querySelector(containerId);
+            let infoImage = document.querySelector(imageId);
+            let selectedButton = null; // Para rastrear el botón seleccionado
 
-        function init() {
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 1.6, 0);
-
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.xr.enabled = true;
-            document.body.appendChild(renderer.domElement);
-
-            const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
-            light.position.set(0.5, 1, 0.25);
-            scene.add(light);
-
-            const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
-            const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-            const cube = new THREE.Mesh(geometry, material);
-            cube.position.set(0, 0, -0.5);
-            scene.add(cube);
-
-            controller = renderer.xr.getController(0);
-            controller.addEventListener('select', onSelect);
-            scene.add(controller);
-
-            renderer.xr.setReferenceSpaceType('local');
-            renderer.xr.addEventListener('sessionstart', onSessionStart);
-            renderer.xr.addEventListener('sessionend', onSessionEnd);
-
-            const button = document.createElement('button');
-            button.textContent = 'Iniciar AR';
-            button.style.position = 'absolute';
-            button.style.bottom = '20px';
-            button.style.left = '50%';
-            button.style.transform = 'translateX(-50%)';
-            button.style.padding = '10px 20px';
-            button.style.backgroundColor = '#007bff';
-            button.style.color = '#fff';
-            button.style.border = 'none';
-            button.style.borderRadius = '5px';
-            button.style.cursor = 'pointer';
-            button.addEventListener('click', () => {
-                if (navigator.xr) {
-                    navigator.xr.requestSession('immersive-ar', { optionalFeatures: ['local-floor', 'hit-test'] }).then(onSessionStarted);
-                } else {
-                    alert('WebXR no es compatible con tu dispositivo.');
-                }
+            // Cuando se detecta el marcador, se muestra el contenido
+            marker.addEventListener("markerFound", () => {
+                container.setAttribute("animation", "property: scale; to: 1 1 1; dur: 500; easing: easeOutElastic");
             });
-            document.body.appendChild(button);
+
+            // Cuando se pierde el marcador, se oculta el contenido
+            marker.addEventListener("markerLost", () => {
+                container.setAttribute("animation", "property: scale; to: 0 0 0; dur: 300; easing: easeInBack");
+            });
+
+            // Cambia la imagen cuando se pasa el cursor sobre un botón
+            function changeImage(buttonId) {
+                let newImage = images[buttonId] || "assets/default_image.png"; // Usa una imagen por defecto si no hay coincidencia
+                infoImage.setAttribute('src', newImage);
+            }
+
+            // Cambia la textura del botón cuando se selecciona
+            function selectButton(button) {
+                if (selectedButton) {
+                    // Restablece la textura del botón previamente seleccionado
+                    selectedButton.setAttribute('src', buttonTextures[selectedButton.id].normal);
+                }
+                // Cambia la textura del botón seleccionado
+                button.setAttribute('src', buttonTextures[button.id].selected);
+                selectedButton = button; // Actualiza el botón seleccionado
+            }
+
+            // Asigna el evento "mouseenter" y "click" a cada botón
+            document.querySelectorAll(buttonClass).forEach(button => {
+                button.addEventListener("mouseenter", () => {
+                    changeImage(button.id);
+                });
+                button.addEventListener("mouseenter", () => {
+                    selectButton(button);
+                });
+            });
         }
 
-        function onSessionStart() {
-            console.log('Sesión AR iniciada');
-        }
+        // Texturas para los botones (normal y seleccionado)
+        const buttonTextures1 = {
+            "button1": { normal: "assets/t1_btn1A.png", selected: "assets/t1_btn1.png" },
+            "button2": { normal: "assets/t1_btn2A.png", selected: "assets/t1_btn2.png" },
+            "button3": { normal: "assets/t1_btn3A.png", selected: "assets/t1_btn3.png" },
+            "button4": { normal: "assets/t1_btn4A.png", selected: "assets/t1_btn4.png" },
+            "button5": { normal: "assets/t1_btn5A.png", selected: "assets/t1_btn5.png" }
+        };
 
-        function onSessionEnd() {
-            console.log('Sesión AR finalizada');
-        }
+        const buttonTextures2 = {
+            "button1_2": { normal: "assets/t2_btn1.png", selected: "assets/t2_btn1A.png" },
+            "button2_2": { normal: "assets/t2_btn2.png", selected: "assets/t2_btn2A.png" },
+            "button3_2": { normal: "assets/t2_btn3.png", selected: "assets/t2_btn3A.png" },
+            "button4_2": { normal: "assets/t2_btn4.png", selected: "assets/t2_btn4A.png" },
+            "button5_2": { normal: "assets/t2_btn5.png", selected: "assets/t2_btn5A.png" }
+        };
 
-        function onSelect(event) {
-            const position = event.target.position;
-            const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
-            const material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
-            const cube = new THREE.Mesh(geometry, material);
-            cube.position.copy(position);
-            scene.add(cube);
-        }
+        // Configuración para el primer marcador
+        setupMarker("#marker1", "#ui-container1", "#info-image1", ".button1", {
+            "button1": "assets/t1_info0.png", // Imagen para el botón 1
+            "button2": "assets/t1_info1.png", // Imagen para el botón 2
+            "button3": "assets/t1_info2.png", // Imagen para el botón 3
+            "button4": "assets/t1_info3.png", // Imagen para el botón 4
+            "button5": "assets/t1_info4.png"  // Imagen para el botón 5
+        }, buttonTextures1);
 
-        function animate() {
-            renderer.setAnimationLoop(render);
-        }
-
-        function render() {
-            renderer.render(scene, camera);
-        }
-
-        init();
-        animate();
+        // Configuración para el segundo marcador
+        setupMarker("#marker2", "#ui-container2", "#info-image2", ".button2", {
+            "button1_2": "assets/t2_info0.png",  // Imagen para el botón 1
+            "button2_2": "assets/t2_info1.png",  // Imagen para el botón 2
+            "button3_2": "assets/t2_info2.png",  // Imagen para el botón 3
+            "button4_2": "assets/t2_info3.png",  // Imagen para el botón 4
+            "button5_2": "assets/t2_info4.png"  // Imagen para el botón 5
+        }, buttonTextures2);
     </script>
 </body>
 </html>
