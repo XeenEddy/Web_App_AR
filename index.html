@@ -8,10 +8,20 @@
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
     <style>
         body { margin: 0; overflow: hidden; }
-        .arjs-loader { /* Estilo para el loader */ }
+        .arjs-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            color: #000;
+        }
     </style>
 </head>
 <body>
+    <!-- Mensaje de carga -->
+    <div class="arjs-loader">Cargando AR...</div>
+
     <!-- Escena de MindAR -->
     <a-scene mindar-image="imageTargetSrc: assets/targets.mind;" embedded renderer="colorManagement: true;" vr-mode-ui="enabled: false">
         <!-- Cámara -->
@@ -53,6 +63,17 @@
     </a-scene>
 
     <script>
+        // Verificar compatibilidad con WebXR
+        if (navigator.xr) {
+            navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
+                if (!supported) {
+                    alert("WebXR no es compatible con tu dispositivo.");
+                }
+            });
+        } else {
+            alert("WebXR no es compatible con tu navegador.");
+        }
+
         // Función para configurar el comportamiento de los marcadores
         function setupMarker(containerId, imageId, buttonClass, images, buttonTextures) {
             let container = document.querySelector(containerId);
