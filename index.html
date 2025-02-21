@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEB APP AR Universal con MindAR</title>
+    <title>AR con A-Frame + MindAR</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
     <style>
@@ -22,7 +22,7 @@
     <!-- Mensaje de carga -->
     <div class="arjs-loader">Cargando AR...</div>
 
-    <!-- Escena de MindAR -->
+    <!-- Escena de A-Frame + MindAR -->
     <a-scene mindar-image="imageTargetSrc: assets/targets.mind;" embedded renderer="colorManagement: true;" vr-mode-ui="enabled: false">
         <!-- Cámara -->
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -66,9 +66,13 @@
         // Verificar compatibilidad con WebXR
         if (navigator.xr) {
             navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
-                if (!supported) {
+                if (supported) {
+                    console.log("WebXR es compatible con este dispositivo.");
+                } else {
                     alert("WebXR no es compatible con tu dispositivo.");
                 }
+            }).catch((error) => {
+                console.error("Error al verificar compatibilidad con WebXR:", error);
             });
         } else {
             alert("WebXR no es compatible con tu navegador.");
